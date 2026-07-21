@@ -12,7 +12,6 @@ Trong phần này, bạn sẽ cấu hình **Amazon Cognito User Pool** để qu�
 
 Thông tin nhóm người dùng được lưu trong claim `cognito:groups` của JWT Token, giúp hệ thống phân biệt quyền của người dùng thông thường và quản trị viên khi truy cập các API.
 
-![overview](/images/5-Workshop/5.2-Authentication/diagram.png)
 
 #### Nội dung
 

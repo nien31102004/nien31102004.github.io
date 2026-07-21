@@ -303,6 +303,8 @@ The Lambda execution role must include the following permissions:
         }
     ]
 }
+````
+
 {{% notice warning %}}
 Do not add any leading or trailing spaces to the SecureDocuments value in the Environment variables. Extra spaces may cause Lambda to access an incorrect DynamoDB table.
 {{% /notice %}}

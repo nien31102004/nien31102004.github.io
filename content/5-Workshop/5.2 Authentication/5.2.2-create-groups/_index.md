@@ -34,7 +34,7 @@ Then choose **Create group**.
 
 Verify that both groups, `Users` and `Admins`, have been created successfully.
 
-![Group list](/images/5-Workshop/5.2/5.2/5.2.2/5.2.2.3.png)
+![Group list](/images/5-Workshop/5.2/5.2.2/5.2.2.3.png)
 
 To add a user to a group, select the group name, choose **Add user to group**, select the user account, and then choose **Add**.
 
