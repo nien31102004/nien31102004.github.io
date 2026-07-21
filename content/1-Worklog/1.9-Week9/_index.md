@@ -21,7 +21,7 @@ pre: " <b> 1.9. </b> "
 | 4 | Analyze real project examples and the importance of initiative and learning new technologies. | 17/06/2026 | 17/06/2026 |  |
 | 5 | Attend a URL Shortener system-design session; study protection layers before the backend and resource preparation. | 18/06/2026 | 18/06/2026 | <https://aws.amazon.com/architecture/> |
 | 6 | Study caching mechanisms and how they reduce database queries and improve response time. | 19/06/2026 | 19/06/2026 | <https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html> |
-| 7 và CN | Summarize lessons on system design, scalability, soft skills, and personal career direction. | 20/06/2026 | 21/06/2026 |  |
+| 7 and Sun | Summarize lessons on system design, scalability, soft skills, and personal career direction. | 20/06/2026 | 21/06/2026 |  |
 
 ### Week 9 Achievements:
 

@@ -22,7 +22,7 @@ pre: " <b> 1.11. </b> "
 | 4 | Standardize the HTTP API JWT Authorizer; document Issuer, Audience, `Authorization: Bearer`, the `sub` claim, and the `/me` test route. | 01/07/2026 | 01/07/2026 | <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html> |
 | 5 | Complete the Resource Server, `upload/read/admin` scopes, Cognito `users/admins` groups, and two-layer authorization testing. | 02/07/2026 | 02/07/2026 | <https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-define-resource-servers.html> |
 | 6 | Coordinate with Backend on document routes, JWT claim extraction, using `sub` as owner ID, and document ownership checks. | 03/07/2026 | 03/07/2026 | <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html> |
-| 7 và CN | Organize `401/403/200` evidence, complete the test matrix and demo script, and review the project report. | 04/07/2026 | 05/07/2026 | <https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/> |
+| 7 and Sun | Organize `401/403/200` evidence, complete the test matrix and demo script, and review the project report. | 04/07/2026 | 05/07/2026 | <https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/> |
 
 ### Week 11 Achievements:
 

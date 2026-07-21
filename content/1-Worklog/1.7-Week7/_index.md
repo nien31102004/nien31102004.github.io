@@ -21,7 +21,7 @@ pre: " <b> 1.7. </b> "
 | 4 | Edit, add, and remove Tags on individual EC2 instances; verify changes in the AWS Console. | 03/06/2026 | 03/06/2026 | <https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html> |
 | 5 | Apply Tags to multiple resources and filter by Owner and Environment for faster discovery. | 04/06/2026 | 04/06/2026 | <https://docs.aws.amazon.com/ARG/latest/userguide/resource-groups.html> |
 | 6 | Use AWS CLI commands such as `create-tags`, `describe-instances`, and `tag:` filters. | 05/06/2026 | 05/06/2026 | <https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html> |
-| 7 và CN | Create a tag-based Resource Group; verify results and clean up EC2 resources and related configuration. | 06/06/2026 | 07/06/2026 | <https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html> |
+| 7 and Sun | Create a tag-based Resource Group; verify results and clean up EC2 resources and related configuration. | 06/06/2026 | 07/06/2026 | <https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html> |
 
 ### Week 7 Achievements:
 

@@ -21,7 +21,7 @@ pre: " <b> 1.10. </b> "
 | 4 | Study ETL and ELT; explore AWS Glue for data extraction, cleansing, and transformation. | 24/06/2026 | 24/06/2026 | <https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html> |
 | 5 | Compare Data Lakes and Data Warehouses; study Amazon Redshift and real-time analytics. | 25/06/2026 | 25/06/2026 | <https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html> |
 | 6 | Set up Amazon QuickSight, connect a Dataset, and build dashboards with charts and tables. | 26/06/2026 | 26/06/2026 | <https://docs.aws.amazon.com/quicksight/latest/user/welcome.html> |
-| 7 và CN | Study data governance and data security; summarize learning and clean up lab resources. | 27/06/2026 | 28/06/2026 | <https://docs.aws.amazon.com/whitepapers/latest/data-classification/data-governance.html> |
+| 7 and Sun | Study data governance and data security; summarize learning and clean up lab resources. | 27/06/2026 | 28/06/2026 | <https://docs.aws.amazon.com/whitepapers/latest/data-classification/data-governance.html> |
 
 ### Week 10 Achievements:
 

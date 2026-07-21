@@ -21,7 +21,7 @@ pre: " <b> 1.4. </b> "
 | 4 | Attach the volume to the EC2 server; inspect it with `lsblk`, format as `ext4`, and mount at `/mnt/shared`. | 13/05/2026 | 13/05/2026 | <https://docs.aws.amazon.com/ebs/latest/userguide/ebs-using-volumes.html> |
 | 5 | Install NFS, configure `/etc/exports`, start the service, and grant internal access. | 14/05/2026 | 14/05/2026 | <https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-old.html> |
 | 6 | Mount the shared directory on the EC2 client; create, edit, and read files to verify data sharing. | 15/05/2026 | 15/05/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html> |
-| 7 và CN | Unmount the file system, remove NFS configuration, detach and delete the EBS volume and EC2 instances. | 16/05/2026 | 17/05/2026 | <https://docs.aws.amazon.com/ebs/latest/userguide/ebs-deleting-volume.html> |
+| 7 and Sun | Unmount the file system, remove NFS configuration, detach and delete the EBS volume and EC2 instances. | 16/05/2026 | 17/05/2026 | <https://docs.aws.amazon.com/ebs/latest/userguide/ebs-deleting-volume.html> |
 
 ### Week 4 Achievements:
 

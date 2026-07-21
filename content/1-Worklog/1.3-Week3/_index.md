@@ -21,7 +21,7 @@ pre: " <b> 1.3. </b> "
 | 4 | Create Security Groups for EC2 and RDS; allow MySQL port 3306 only from the application Security Group. | 06/05/2026 | 06/05/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html> |
 | 5 | Create a DB Subnet Group from private subnets and deploy a non-publicly accessible RDS MySQL instance. | 07/05/2026 | 07/05/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html> |
 | 6 | Connect from EC2 to RDS; create a database, tables, and sample data to validate queries. | 08/05/2026 | 08/05/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html> |
-| 7 và CN | Create and restore an RDS snapshot to verify recovery, then clean up resources. | 09/05/2026 | 10/05/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html> |
+| 7 and Sun | Create and restore an RDS snapshot to verify recovery, then clean up resources. | 09/05/2026 | 10/05/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html> |
 
 ### Week 3 Achievements:
 

@@ -21,7 +21,7 @@ pre: " <b> 1.12. </b> "
 | 4 | Study Computer Vision and Natural Language Processing; relate them to the team's document-analysis use case. | 08/07/2026 | 08/07/2026 | <https://aws.amazon.com/what-is/nlp/> |
 | 5 | Explore Amazon SageMaker and the workflow for data preparation, training, evaluation, and model deployment. | 09/07/2026 | 09/07/2026 | <https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html> |
 | 6 | Study MLOps, model versioning, deployment automation, and post-deployment monitoring. | 10/07/2026 | 10/07/2026 | <https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html> |
-| 7 và CN | Study Responsible AI; summarize the internship, complete the report, and prepare the project demonstration. | 11/07/2026 | 12/07/2026 | <https://aws.amazon.com/machine-learning/responsible-ai/> |
+| 7 and Sun | Study Responsible AI; summarize the internship, complete the report, and prepare the project demonstration. | 11/07/2026 | 12/07/2026 | <https://aws.amazon.com/machine-learning/responsible-ai/> |
 
 ### Week 12 Achievements:
 

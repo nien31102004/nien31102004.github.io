@@ -21,7 +21,7 @@ pre: " <b> 1.5. </b> "
 | 4 | Sign in as each IAM User to validate assigned permissions and AccessDenied scenarios. | 20/05/2026 | 20/05/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html> |
 | 5 | Create an administrative IAM Role; update its Trust Relationship and allow a no-permission user to assume it. | 21/05/2026 | 21/05/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html> |
 | 6 | Add an IP-based Condition to Assume Role and test allowed and denied requests. | 22/05/2026 | 22/05/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html> |
-| 7 và CN | Add a time-based Condition, summarize tests, and delete created Users, Groups, Roles, and Policies. | 23/05/2026 | 24/05/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws-dates.html> |
+| 7 and Sun | Add a time-based Condition, summarize tests, and delete created Users, Groups, Roles, and Policies. | 23/05/2026 | 24/05/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws-dates.html> |
 
 ### Week 5 Achievements:
 

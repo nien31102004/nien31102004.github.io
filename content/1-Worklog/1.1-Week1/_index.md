@@ -21,7 +21,7 @@ pre: " <b> 1.1. </b> "
 | 4 | Explore the AWS Management Console, Regions, Availability Zones, and service navigation. | 22/04/2026 | 22/04/2026 | <https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html> |
 | 5 | Study the main AWS service groups: Compute, Storage, Networking, Database, Security, and Management. | 23/04/2026 | 23/04/2026 | <https://aws.amazon.com/products/> |
 | 6 | Complete introductory labs; monitor resources and review potential account charges. | 24/04/2026 | 24/04/2026 | <https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html> |
-| 7 và CN | Consolidate notes, review created resources, and complete the Week 1 report. | 25/04/2026 | 26/04/2026 | <https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html> |
+| 7 and Sun | Consolidate notes, review created resources, and complete the Week 1 report. | 25/04/2026 | 26/04/2026 | <https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html> |
 
 ### Week 1 Achievements:
 

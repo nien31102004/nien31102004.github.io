@@ -21,7 +21,7 @@ pre: " <b> 1.2. </b> "
 | 4 | Deploy VPC and EC2 resources; learn Security Groups, subnets, public IPs, and instance connectivity. | 29/04/2026 | 29/04/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html> |
 | 5 | Use Cloud9 and AWS CLI on EC2; manage resources through command-line operations. | 30/04/2026 | 30/04/2026 | <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html> |
 | 6 | Practice Amazon S3, static website hosting, Amazon RDS, Lightsail, and EC2 Auto Scaling. | 01/05/2026 | 01/05/2026 | <https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html> |
-| 7 và CN | Study CloudWatch and Route 53; summarize learning outcomes and clean up unused resources. | 02/05/2026 | 03/05/2026 | <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html> |
+| 7 and  | Study CloudWatch and Route 53; summarize learning outcomes and clean up unused resources. | 02/05/2026 | 03/05/2026 | <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html> |
 
 ### Week 2 Achievements:
 

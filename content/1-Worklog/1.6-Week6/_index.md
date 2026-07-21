@@ -21,7 +21,7 @@ pre: " <b> 1.6. </b> "
 | 4 | Attend a confidence-building session; note methods for preparation, practice, and overcoming hesitation. | 27/05/2026 | 27/05/2026 |  |
 | 5 | Study the development, operation, and promotion process of the Tử Vi Đại Việt website project. | 28/05/2026 | 28/05/2026 |  |
 | 6 | Attend a session on procrastination; learn causes and methods such as task decomposition and clear goals. | 29/05/2026 | 29/05/2026 |  |
-| 7 và CN | Summarize lessons on technology, communication, presentation, teamwork, and time management. | 30/05/2026 | 31/05/2026 |  |
+| 7 and Sun | Summarize lessons on technology, communication, presentation, teamwork, and time management. | 30/05/2026 | 31/05/2026 |  |
 
 ### Week 6 Achievements:
 

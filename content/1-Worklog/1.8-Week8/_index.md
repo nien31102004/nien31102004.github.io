@@ -21,7 +21,7 @@ pre: " <b> 1.8. </b> "
 | 4 | Study IAM Identity Center, centralized user management, and Permission Sets. | 10/06/2026 | 10/06/2026 | <https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html> |
 | 5 | Explore identity federation and access assignment across multiple AWS accounts in Organizations. | 11/06/2026 | 11/06/2026 | <https://docs.aws.amazon.com/singlesignon/latest/userguide/concepts.html> |
 | 6 | Create an IAM Permission Boundary, attach it to a user or role, and validate its effective permission limit. | 12/06/2026 | 12/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html> |
-| 7 và CN | Compare identity policies, Permission Boundaries, and SCPs; summarize results and clean up resources. | 13/06/2026 | 14/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html> |
+| 7 and Sun | Compare identity policies, Permission Boundaries, and SCPs; summarize results and clean up resources. | 13/06/2026 | 14/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html> |
 
 ### Week 8 Achievements:
 
