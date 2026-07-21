@@ -20,7 +20,7 @@ Create a regular user group with the following information:
 
 Then choose **Create group**.
 
-![Create group user](/images/5-Workshop/5.2/5.2.2/5.2.2..png)
+![Create group user](/images/5-Workshop/5.2/5.2.2/5.2.2.1.png)
 
 Next, choose **Create group** again to create the administrator group with the following information:
 
