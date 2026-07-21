@@ -22,7 +22,7 @@ Key concepts to know:
 By combining Assume Role, IAM Conditions, IAM Identity Center, and Session Tags, organizations can implement the principle of least privilege while providing secure, flexible, and efficient access management.
 
 ### Image
-![](/images/3-blogsposted/blog2.jpg)
+![](/images/3-blogsposted/blog2.png)
 
 ### Reference
 

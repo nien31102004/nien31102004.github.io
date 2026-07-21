@@ -23,7 +23,7 @@ Những nội dung quan trọng cần nắm:
 Việc kết hợp kiến trúc Serverless với các giải pháp giám sát, phân tích log và phòng thủ tự động giúp xây dựng hệ thống AWS có khả năng mở rộng, vận hành hiệu quả và đảm bảo an toàn trước các nguy cơ an ninh mạng.
 
 ### Hình ảnh
-![](/images/3-blogsposted/blog3.jpg)
+![](/images/3-blogsposted/blog3.png)
 
 ### Tham khảo
 

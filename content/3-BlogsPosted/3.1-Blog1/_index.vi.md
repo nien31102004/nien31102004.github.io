@@ -23,7 +23,7 @@ Những nội dung quan trọng cần nắm:
 Việc kết hợp IAM Identity Center cùng SCPs, RCPs, Permissions Boundaries, Identity-based Policies và Resource-based Policies giúp xây dựng mô hình bảo mật nhiều lớp, vừa đảm bảo khả năng quản trị tập trung vừa tăng cường mức độ an toàn cho hạ tầng AWS.
 
 ### Hình ảnh
-![](/images/3-blogsposted/blog1.jpg)
+![](/images/3-blogsposted/blog1.png)
 
 ### Tham khảo
 https://aws.amazon.com/.../iam-policy-types-how-and-when...

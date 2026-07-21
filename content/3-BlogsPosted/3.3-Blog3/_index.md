@@ -23,7 +23,7 @@ Key concepts to know:
 Combining serverless architecture with continuous monitoring, log analysis, and automated defense mechanisms helps organizations build scalable, secure, and resilient cloud applications.
 
 ### Image
-![](/images/3-blogsposted/blog3.jpg)
+![](/images/3-blogsposted/blog3.png)
 
 ### Reference
 

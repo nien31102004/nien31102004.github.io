@@ -22,7 +22,7 @@ Key points to know:
 This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
 
 ### Image
-![](/images/3-blogsposted/blog1.jpg)
+![](/images/3-blogsposted/blog1.png)
 
 ### Reference
 https://aws.amazon.com/.../iam-policy-types-how-and-when...

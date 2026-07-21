@@ -22,7 +22,7 @@ Những nội dung quan trọng cần nắm:
 Việc kết hợp Assume Role, IAM Conditions, IAM Identity Center và Session Tags giúp triển khai hiệu quả nguyên tắc Least Privilege, đồng thời mang lại khả năng quản lý truy cập linh hoạt, bảo mật và dễ mở rộng.
 
 ### Hình ảnh
-![](/images/3-blogsposted/blog2.jpg)
+![](/images/3-blogsposted/blog2.png)
 
 ### Tham khảo
 
