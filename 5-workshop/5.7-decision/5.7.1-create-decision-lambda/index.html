@@ -1,0 +1,1410 @@
+<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.145.0"><meta name=description content><meta name=author content="thienlh@thienlu.com"><link rel=icon href=/images/favicon.png type=image/png><title>Create the Decision Engine Lambda :: Internship Report</title>
+<link href=/css/nucleus.css?1785052465 rel=stylesheet><link href=/css/fontawesome-all.min.css?1785052465 rel=stylesheet><link href=/css/hybrid.css?1785052465 rel=stylesheet><link href=/css/featherlight.min.css?1785052465 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1785052465 rel=stylesheet><link href=/css/auto-complete.css?1785052465 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1785052465 rel=stylesheet><link href=/css/theme.css?1785052465 rel=stylesheet><link href=/css/hugo-theme.css?1785052465 rel=stylesheet><link href=/css/theme-workshop.css?1785052465 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1785052465></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/5-workshop/5.7-decision/5.7.1-create-decision-lambda/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1785052465></script><script type=text/javascript src=/js/auto-complete.js?1785052465></script><script type=text/javascript>var baseurl="https://nien31102004.github.io/"</script><script type=text/javascript src=/js/search.js?1785052465></script></div><div class=highlightable><ul class=topics><li data-nav-id=/1-worklog/ title=Worklog class=dd-item><a href=/1-worklog/><b>1. </b>Worklog
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/1-worklog/1.1-week1/ title="Week 1 Worklog" class=dd-item><a href=/1-worklog/1.1-week1/><b>1.1. </b>Week 1 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.2-week2/ title="Week 2 Worklog" class=dd-item><a href=/1-worklog/1.2-week2/><b>1.2. </b>Week 2 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.3-week3/ title="Week 3 Worklog" class=dd-item><a href=/1-worklog/1.3-week3/><b>1.3. </b>Week 3 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.4-week4/ title="Week 4 Worklog" class=dd-item><a href=/1-worklog/1.4-week4/><b>1.4. </b>Week 4 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.5-week5/ title="Week 5 Worklog" class=dd-item><a href=/1-worklog/1.5-week5/><b>1.5. </b>Week 5 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.6-week6/ title="Week 6 Worklog" class=dd-item><a href=/1-worklog/1.6-week6/><b>1.6. </b>Week 6 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.7-week7/ title="Week 7 Worklog" class=dd-item><a href=/1-worklog/1.7-week7/><b>1.7. </b>Week 7 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.8-week8/ title="Week 8 Worklog" class=dd-item><a href=/1-worklog/1.8-week8/><b>1.8. </b>Week 8 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.9-week9/ title="Week 9 Worklog" class=dd-item><a href=/1-worklog/1.9-week9/><b>1.9. </b>Week 9 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.10-week10/ title="Week 10 Worklog" class=dd-item><a href=/1-worklog/1.10-week10/><b>1.10. </b>Week 10 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.11-week11/ title="Week 11 Worklog" class=dd-item><a href=/1-worklog/1.11-week11/><b>1.11. </b>Week 11 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.12-week12/ title="Week 12 Worklog" class=dd-item><a href=/1-worklog/1.12-week12/><b>1.12. </b>Week 12 Worklog
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/2-proposal/ title="Project Proposal" class=dd-item><a href=/2-proposal/><b>2. </b>Project Proposal
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/ title="Blogs Posted" class=dd-item><a href=/3-blogsposted/><b>3. </b>Blogs Posted
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/4-eventparticipated/ title="Events Participated" class=dd-item><a href=/4-eventparticipated/><b>4. </b>Events Participated
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/4-eventparticipated/4.1-event1/ title="Event 1 - Seminar on Professional Knowledge and Personal Development Skills" class=dd-item><a href=/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1 - Seminar on Professional Knowledge and Personal Development Skills
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/4-eventparticipated/4.2-event2/ title="Event 2 - From Student to Cloud, Data, and DevOps Professional" class=dd-item><a href=/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2 - From Student to Cloud, Data, and DevOps Professional
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/4-eventparticipated/4.3-event3/ title="Event 3 - Seminar on Professional Knowledge and Personal Development Skills" class=dd-item><a href=/4-eventparticipated/4.3-event3/><b>4.3. </b>Event 3 - Seminar on Professional Knowledge and Personal Development Skills
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/ title=Workshop class="dd-item
+parent"><a href=/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.1-workshop-overview/ title=Introduction class=dd-item><a href=/5-workshop/5.1-workshop-overview/><b>5.1. </b>Introduction
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.2-authentication/ title="Create User Groups" class=dd-item><a href=/5-workshop/5.2-authentication/><b>5.2 </b>Create User Groups
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.2-authentication/5.2.1-create-user-pool/ title="Create Amazon Cognito User Pool" class=dd-item><a href=/5-workshop/5.2-authentication/5.2.1-create-user-pool/><b>5.2.1 </b>Create Amazon Cognito User Pool
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.2-authentication/5.2.2-create-groups/ title="Create User Groups" class=dd-item><a href=/5-workshop/5.2-authentication/5.2.2-create-groups/><b>5.2.2 </b>Create User Groups
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.3-storage/ title=Storage class=dd-item><a href=/5-workshop/5.3-storage/><b>5.3 </b>Storage
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.3-storage/5.3.1-create-s3/ title="Create Amazon S3 Buckets" class=dd-item><a href=/5-workshop/5.3-storage/5.3.1-create-s3/><b>5.3.1 </b>Create Amazon S3 Buckets
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-storage/5.3.2-create-dynamodb/ title="Create an Amazon DynamoDB Table" class=dd-item><a href=/5-workshop/5.3-storage/5.3.2-create-dynamodb/><b>5.3.2 </b>Create an Amazon DynamoDB Table
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-storage/5.3.3-create-prefix/ title="Create Prefixes in Amazon S3" class=dd-item><a href=/5-workshop/5.3-storage/5.3.3-create-prefix/><b>5.3.3 </b>Create Prefixes in Amazon S3
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-storage/5.3.4-configure-cors/ title="CORS configuration for Amazon S3" class=dd-item><a href=/5-workshop/5.3-storage/5.3.4-configure-cors/><b>5.3.4 </b>CORS configuration for Amazon S3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.4-upload/ title=Upload class=dd-item><a href=/5-workshop/5.4-upload/><b>5.4 </b>Upload
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.4-upload/5.4.1-ceate-lambda-upload/ title="Create Lambda for Presigned URL Generation" class=dd-item><a href=/5-workshop/5.4-upload/5.4.1-ceate-lambda-upload/><b>5.4.1 </b>Create Lambda for Presigned URL Generation
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.4-upload/5.4.2-create-upload-api/ title="Create API for Presigned URL Generation" class=dd-item><a href=/5-workshop/5.4-upload/5.4.2-create-upload-api/><b>5.4.2 </b>Create API for Presigned URL Generation
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.4-upload/5.4.3-test-upload/ title="Test the Presigned URL" class=dd-item><a href=/5-workshop/5.4-upload/5.4.3-test-upload/><b>5.4.3 </b>Test the Presigned URL
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.5-malware-scan/ title="Malware Scanning" class=dd-item><a href=/5-workshop/5.5-malware-scan/><b>5.5 </b>Malware Scanning
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.5-malware-scan/5.5.1-create-sqs/ title="Create an Amazon SQS Queue" class=dd-item><a href=/5-workshop/5.5-malware-scan/5.5.1-create-sqs/><b>5.5.1 </b>Create an Amazon SQS Queue
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.5-malware-scan/5.5.2-configure-s3-event/ title="Configure Amazon S3 Event Notifications" class=dd-item><a href=/5-workshop/5.5-malware-scan/5.5.2-configure-s3-event/><b>5.5.2 </b>Configure Amazon S3 Event Notifications
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.5-malware-scan/5.5.3-configure-guardduty/ title="Configure GuardDuty Malware Protection" class=dd-item><a href=/5-workshop/5.5-malware-scan/5.5.3-configure-guardduty/><b>5.5.3 </b>Configure GuardDuty Malware Protection
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.5-malware-scan/5.5.4-process-result/ title="Process Malware Scan Results" class=dd-item><a href=/5-workshop/5.5-malware-scan/5.5.4-process-result/><b>5.5.4 </b>Process Malware Scan Results
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.5-malware-scan/5.5.5-test-malware-scan/ title="Test Malware Scanning" class=dd-item><a href=/5-workshop/5.5-malware-scan/5.5.5-test-malware-scan/><b>5.5.5 </b>Test Malware Scanning
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.6-ai-analysis/ title="AI Content Analysis" class=dd-item><a href=/5-workshop/5.6-ai-analysis/><b>5.6 </b>AI Content Analysis
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.6-ai-analysis/5.6.1-prepare-extraction/ title="Prepare Document Extraction Libraries" class=dd-item><a href=/5-workshop/5.6-ai-analysis/5.6.1-prepare-extraction/><b>5.6.1 </b>Prepare Document Extraction Libraries
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.6-ai-analysis/5.6.2-configure-mantle/ title="Configure Amazon Bedrock Mantle" class=dd-item><a href=/5-workshop/5.6-ai-analysis/5.6.2-configure-mantle/><b>5.6.2 </b>Configure Amazon Bedrock Mantle
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.6-ai-analysis/5.6.3-create-analysis-lambda/ title="Create the AI Content Analysis Lambda" class=dd-item><a href=/5-workshop/5.6-ai-analysis/5.6.3-create-analysis-lambda/><b>5.6.3 </b>Create the AI Content Analysis Lambda
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.6-ai-analysis/5.6.4-test-ai-bedrock/ title="Test AI Document Analysis" class=dd-item><a href=/5-workshop/5.6-ai-analysis/5.6.4-test-ai-bedrock/><b>5.6.4 </b>Test AI Document Analysis
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.7-decision/ title=Decision class="dd-item
+parent"><a href=/5-workshop/5.7-decision/><b>5.7 </b>Decision
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.7-decision/5.7.1-create-decision-lambda/ title="Create the Decision Engine Lambda" class="dd-item
+active"><a href=/5-workshop/5.7-decision/5.7.1-create-decision-lambda/><b>5.7.1 </b>Create the Decision Engine Lambda
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.7-decision/5.7.2-move-safe-file/ title="Move Safe Documents" class=dd-item><a href=/5-workshop/5.7-decision/5.7.2-move-safe-file/><b>5.7.2 </b>Move Safe Documents
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.7-decision/5.7.3-move-reject-file/ title="Move Rejected Documents" class=dd-item><a href=/5-workshop/5.7-decision/5.7.3-move-reject-file/><b>5.7.3 </b>Move Rejected Documents
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.8-document-api/ title="Document API" class=dd-item><a href=/5-workshop/5.8-document-api/><b>5.8 </b>Document API
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.8-document-api/5.8.1-list-documents/ title="List Documents" class=dd-item><a href=/5-workshop/5.8-document-api/5.8.1-list-documents/><b>5.8.1 </b>List Documents
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.8-document-api/5.8.2-get-document/ title="Get Document Details" class=dd-item><a href=/5-workshop/5.8-document-api/5.8.2-get-document/><b>5.8.2 </b>Get Document Details
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.8-document-api/5.8.3-delete-document/ title="Delete a Document" class=dd-item><a href=/5-workshop/5.8-document-api/5.8.3-delete-document/><b>5.8.3 </b>Delete a Document
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.8-document-api/5.8.4-download-url/ title="Generate a Download URL" class=dd-item><a href=/5-workshop/5.8-document-api/5.8.4-download-url/><b>5.8.4 </b>Generate a Download URL
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.8-document-api/5.8.5-scan-result/ title="View Document Scan Results" class=dd-item><a href=/5-workshop/5.8-document-api/5.8.5-scan-result/><b>5.8.5 </b>View Document Scan Results
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.9-admin/ title="System Administration" class=dd-item><a href=/5-workshop/5.9-admin/><b>5.9 </b>System Administration
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.9-admin/5.9.1-manage-documents/ title="Manage Documents" class=dd-item><a href=/5-workshop/5.9-admin/5.9.1-manage-documents/><b>5.9.1 </b>Manage Documents
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.9-admin/5.9.2-review-document/ title="Review Documents" class=dd-item><a href=/5-workshop/5.9-admin/5.9.2-review-document/><b>5.9.2 </b>Review Documents
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.9-admin/5.9.3-manage-users/ title="User Management" class=dd-item><a href=/5-workshop/5.9-admin/5.9.3-manage-users/><b>5.9.3 </b>User Management
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.10-frontend/ title=Frontend class=dd-item><a href=/5-workshop/5.10-frontend/><b>5.10. </b>Frontend
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.10-frontend/5.10.1-create-vite/ title="Create a Vite Application" class=dd-item><a href=/5-workshop/5.10-frontend/5.10.1-create-vite/><b>5.10.1 </b>Create a Vite Application
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.10-frontend/5.10.2-integrate-api/ title="Integrate Authentication and APIs" class=dd-item><a href=/5-workshop/5.10-frontend/5.10.2-integrate-api/><b>5.10.2 </b>Integrate Authentication and APIs
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.10-frontend/5.10.3-deploy-s3/ title="Triển khai Frontend lên Amazon S3" class=dd-item><a href=/5-workshop/5.10-frontend/5.10.3-deploy-s3/><b>5.10.3 </b>Triển khai Frontend lên Amazon S3
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.10-frontend/5.10.4-deploy-cloudfront/ title="Deploy the Frontend to Amazon S3" class=dd-item><a href=/5-workshop/5.10-frontend/5.10.4-deploy-cloudfront/><b>5.10.4 </b>Deploy the Frontend to Amazon S3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.11-testing/ title=Testing class=dd-item><a href=/5-workshop/5.11-testing/><b>5.11. </b>Testing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.12-cleanup/ title=Cleanup class=dd-item><a href=/5-workshop/5.12-cleanup/><b>5.12. </b>Cleanup
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/6-self-evaluation/ title=Self-Assessment class=dd-item><a href=/6-self-evaluation/><b>6. </b>Self-Assessment
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/7-feedback/ title="Sharing and Feedback" class=dd-item><a href=/7-feedback/><b>7. </b>Sharing and Feedback
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=https://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://nien31102004.github.io/5-workshop/5.7-decision/5.7.1-create-decision-lambda/ selected>English</option><option id=vi value=https://nien31102004.github.io/vi/5-workshop/5.7-decision/5.7.1-create-decision-lambda/>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>26-07-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/>Internship Report</a> > <a href=/5-workshop/>Workshop</a> > <a href=/5-workshop/5.7-decision/>Decision</a> > Create the Decision Engine Lambda</span></div><div class=progress><div class=wrapper><nav id=TableOfContents></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Create the Decision Engine Lambda</h1><p>The Decision Engine Lambda combines malware scan results and AI analysis results to determine the final status of each document.</p><p>Open the <a href=https://console.aws.amazon.com/lambda/>AWS Lambda console</a> and choose <strong>Create function</strong>.</p><p>In the Lambda configuration section, enter:</p><ul><li><strong>Function name</strong>: <code>SecureDocDecisionEngine</code></li><li><strong>Runtime</strong>: <code>Python 3.14</code></li><li><strong>Architecture</strong>: <code>x86_64</code></li><li><strong>Execution role</strong>: Select a role with permissions to access Amazon S3, Amazon DynamoDB, and CloudWatch Logs.</li></ul><p>Then choose <strong>Create function</strong>.</p><p><img src=/images/5-Workshop/5.7/5.7.1/5.7.1.1.png alt="Configure function"></p><p>In the <strong>Code source</strong> section, replace the contents of <code>lambda_function.py</code> with the project Decision Engine source code, and then choose <strong>Deploy</strong>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>import json
+</span></span><span style=display:flex><span>import os
+</span></span><span style=display:flex><span>import traceback
+</span></span><span style=display:flex><span>import urllib.parse
+</span></span><span style=display:flex><span>from datetime import datetime, timezone
+</span></span><span style=display:flex><span>from decimal import Decimal, InvalidOperation
+</span></span><span style=display:flex><span>from typing import Any
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>import boto3
+</span></span><span style=display:flex><span>from botocore.exceptions import ClientError
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CODE_VERSION = &#34;secure-doc-decision-engine-admin-pending-v2&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># AWS clients and configuration
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>s3_client = boto3.client(&#34;s3&#34;)
+</span></span><span style=display:flex><span>dynamodb = boto3.resource(&#34;dynamodb&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>TABLE_NAME = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;DOCUMENTS_TABLE&#34;,
+</span></span><span style=display:flex><span>    &#34;SecureDocuments&#34;,
+</span></span><span style=display:flex><span>).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>DOCUMENT_BUCKET = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;DOCUMENT_BUCKET&#34;,
+</span></span><span style=display:flex><span>    &#34;secure-ai-document-storage&#34;,
+</span></span><span style=display:flex><span>).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>QUARANTINE_PREFIX = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;QUARANTINE_PREFIX&#34;,
+</span></span><span style=display:flex><span>    &#34;quarantine&#34;,
+</span></span><span style=display:flex><span>).strip().strip(&#34;/&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CLEAN_PREFIX = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;CLEAN_PREFIX&#34;,
+</span></span><span style=display:flex><span>    &#34;clean&#34;,
+</span></span><span style=display:flex><span>).strip().strip(&#34;/&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>REJECT_PREFIX = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;REJECT_PREFIX&#34;,
+</span></span><span style=display:flex><span>    &#34;reject&#34;,
+</span></span><span style=display:flex><span>).strip().strip(&#34;/&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ADMIN_GROUP = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;ADMIN_GROUP&#34;,
+</span></span><span style=display:flex><span>    &#34;admin&#34;,
+</span></span><span style=display:flex><span>).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CORS_ORIGIN = os.environ.get(
+</span></span><span style=display:flex><span>    &#34;CORS_ORIGIN&#34;,
+</span></span><span style=display:flex><span>    &#34;*&#34;,
+</span></span><span style=display:flex><span>).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>table = dynamodb.Table(TABLE_NAME)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>VALID_DECISION_SOURCES = {
+</span></span><span style=display:flex><span>    &#34;SYSTEM_RULES&#34;,
+</span></span><span style=display:flex><span>    &#34;ADMIN_REVIEW&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>VALID_SYSTEM_ACTIONS = {
+</span></span><span style=display:flex><span>    &#34;ALLOW&#34;,
+</span></span><span style=display:flex><span>    &#34;REVIEW&#34;,
+</span></span><span style=display:flex><span>    &#34;REJECT&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>VALID_ADMIN_ACTIONS = {
+</span></span><span style=display:flex><span>    &#34;ALLOW&#34;,
+</span></span><span style=display:flex><span>    &#34;REJECT&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ADMIN_REVIEW_STATUSES = {
+</span></span><span style=display:flex><span>    &#34;MANUAL_REVIEW&#34;,
+</span></span><span style=display:flex><span>    &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>SYSTEM_SOURCE_STATUSES = {
+</span></span><span style=display:flex><span>    &#34;AI_ANALYSIS_COMPLETED&#34;,
+</span></span><span style=display:flex><span>    &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>    &#34;MALWARE_DETECTED&#34;,
+</span></span><span style=display:flex><span>    &#34;MALWARE_SCAN_COMPLETED&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>REVIEW_SOURCE_STATUSES = {
+</span></span><span style=display:flex><span>    &#34;AI_ANALYSIS_COMPLETED&#34;,
+</span></span><span style=display:flex><span>    &#34;MALWARE_SCAN_COMPLETED&#34;,
+</span></span><span style=display:flex><span>    &#34;MANUAL_REVIEW&#34;,
+</span></span><span style=display:flex><span>    &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>    &#34;SCAN_ERROR&#34;,
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>class ForbiddenError(Exception):
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;The authenticated caller is not authorized to perform this action.&#34;&#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># Lambda handler
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def lambda_handler(event: Any, context: Any) -&gt; dict:
+</span></span><span style=display:flex><span>    print(f&#34;CODE_VERSION: {CODE_VERSION}&#34;)
+</span></span><span style=display:flex><span>    print(&#34;Received Decision Engine event:&#34;)
+</span></span><span style=display:flex><span>    print(json.dumps(event, default=str, indent=2))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        normalized_event = normalize_event(event)
+</span></span><span style=display:flex><span>        document_id = get_document_id(normalized_event)
+</span></span><span style=display:flex><span>        decision_source = get_decision_source(normalized_event)
+</span></span><span style=display:flex><span>        requested_action = normalized_event.get(&#34;action&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        if decision_source == &#34;ADMIN_REVIEW&#34;:
+</span></span><span style=display:flex><span>            validate_internal_admin_review(event)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        item = get_document(document_id)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        if not item:
+</span></span><span style=display:flex><span>            return api_response(
+</span></span><span style=display:flex><span>                404,
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    &#34;message&#34;: &#34;Document not found&#34;,
+</span></span><span style=display:flex><span>                    &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        print_document_context(item)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        action = resolve_final_action(
+</span></span><span style=display:flex><span>            item=item,
+</span></span><span style=display:flex><span>            decision_source=decision_source,
+</span></span><span style=display:flex><span>            requested_action=requested_action,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        print(
+</span></span><span style=display:flex><span>            &#34;Resolved decision:&#34;,
+</span></span><span style=display:flex><span>            json.dumps(
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>                    &#34;decisionSource&#34;: decision_source,
+</span></span><span style=display:flex><span>                    &#34;resolvedAction&#34;: action,
+</span></span><span style=display:flex><span>                    &#34;malwareStatus&#34;: item.get(&#34;malwareStatus&#34;),
+</span></span><span style=display:flex><span>                    &#34;systemRecommendedAction&#34;: item.get(
+</span></span><span style=display:flex><span>                        &#34;systemRecommendedAction&#34;
+</span></span><span style=display:flex><span>                    ),
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>                default=str,
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        if action == &#34;ALLOW&#34;:
+</span></span><span style=display:flex><span>            result = process_allow(
+</span></span><span style=display:flex><span>                item=item,
+</span></span><span style=display:flex><span>                decision_source=decision_source,
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>        elif action == &#34;REJECT&#34;:
+</span></span><span style=display:flex><span>            result = process_reject(
+</span></span><span style=display:flex><span>                item=item,
+</span></span><span style=display:flex><span>                decision_source=decision_source,
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>        else:
+</span></span><span style=display:flex><span>            result = process_review(
+</span></span><span style=display:flex><span>                item=item,
+</span></span><span style=display:flex><span>                decision_source=decision_source,
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        print(
+</span></span><span style=display:flex><span>            &#34;Decision completed:&#34;,
+</span></span><span style=display:flex><span>            json.dumps(result, default=str, indent=2),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        return api_response(200, result)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    except ForbiddenError as error:
+</span></span><span style=display:flex><span>        print(f&#34;Authorization error: {error}&#34;)
+</span></span><span style=display:flex><span>        return api_response(403, {&#34;message&#34;: str(error)})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    except ValueError as error:
+</span></span><span style=display:flex><span>        print(f&#34;Validation error: {error}&#34;)
+</span></span><span style=display:flex><span>        return api_response(400, {&#34;message&#34;: str(error)})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    except ClientError as error:
+</span></span><span style=display:flex><span>        print(&#34;AWS ClientError:&#34;)
+</span></span><span style=display:flex><span>        print(json.dumps(error.response, default=str, indent=2))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        error_code = (
+</span></span><span style=display:flex><span>            error.response
+</span></span><span style=display:flex><span>            .get(&#34;Error&#34;, {})
+</span></span><span style=display:flex><span>            .get(&#34;Code&#34;, &#34;Unknown&#34;)
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        if error_code == &#34;ConditionalCheckFailedException&#34;:
+</span></span><span style=display:flex><span>            return api_response(
+</span></span><span style=display:flex><span>                409,
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    &#34;message&#34;: (
+</span></span><span style=display:flex><span>                        &#34;The document has already been processed or &#34;
+</span></span><span style=display:flex><span>                        &#34;is no longer in a valid state&#34;
+</span></span><span style=display:flex><span>                    )
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        return api_response(
+</span></span><span style=display:flex><span>            500,
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                &#34;message&#34;: &#34;AWS service error&#34;,
+</span></span><span style=display:flex><span>                &#34;errorCode&#34;: error_code,
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    except Exception as error:
+</span></span><span style=display:flex><span>        print(f&#34;Unexpected error: {error}&#34;)
+</span></span><span style=display:flex><span>        traceback.print_exc()
+</span></span><span style=display:flex><span>        return api_response(
+</span></span><span style=display:flex><span>            500,
+</span></span><span style=display:flex><span>            {&#34;message&#34;: &#34;Internal server error&#34;},
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># Event normalization and authorization
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def normalize_event(event: Any) -&gt; dict:
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    Supports:
+</span></span><span style=display:flex><span>    1. Direct Lambda-to-Lambda events.
+</span></span><span style=display:flex><span>    2. API Gateway events with a JSON body.
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    if not isinstance(event, dict):
+</span></span><span style=display:flex><span>        raise ValueError(&#34;Event must be a JSON object&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    body = event.get(&#34;body&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if body is None:
+</span></span><span style=display:flex><span>        return dict(event)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if isinstance(body, dict):
+</span></span><span style=display:flex><span>        parsed_body = body
+</span></span><span style=display:flex><span>    elif isinstance(body, str):
+</span></span><span style=display:flex><span>        try:
+</span></span><span style=display:flex><span>            parsed_body = json.loads(body)
+</span></span><span style=display:flex><span>        except json.JSONDecodeError as error:
+</span></span><span style=display:flex><span>            raise ValueError(
+</span></span><span style=display:flex><span>                &#34;Request body is not valid JSON&#34;
+</span></span><span style=display:flex><span>            ) from error
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        raise ValueError(&#34;Invalid request body&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not isinstance(parsed_body, dict):
+</span></span><span style=display:flex><span>        raise ValueError(&#34;Request body must be a JSON object&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    merged = dict(event)
+</span></span><span style=display:flex><span>    merged.update(parsed_body)
+</span></span><span style=display:flex><span>    return merged
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_document_id(event: dict) -&gt; str:
+</span></span><span style=display:flex><span>    document_id = event.get(&#34;documentId&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not document_id:
+</span></span><span style=display:flex><span>        path_parameters = event.get(&#34;pathParameters&#34;) or {}
+</span></span><span style=display:flex><span>        document_id = path_parameters.get(&#34;documentId&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    document_id = str(document_id or &#34;&#34;).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not document_id:
+</span></span><span style=display:flex><span>        raise ValueError(&#34;documentId is required&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return document_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_decision_source(event: dict) -&gt; str:
+</span></span><span style=display:flex><span>    decision_source = str(
+</span></span><span style=display:flex><span>        event.get(&#34;decisionSource&#34;, &#34;SYSTEM_RULES&#34;)
+</span></span><span style=display:flex><span>    ).strip().upper()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if decision_source not in VALID_DECISION_SOURCES:
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;decisionSource must be SYSTEM_RULES or ADMIN_REVIEW&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return decision_source
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def require_admin(event: dict) -&gt; None:
+</span></span><span style=display:flex><span>    claims = extract_authorizer_claims(event)
+</span></span><span style=display:flex><span>    groups = parse_cognito_groups(
+</span></span><span style=display:flex><span>        claims.get(&#34;cognito:groups&#34;)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if ADMIN_GROUP not in groups:
+</span></span><span style=display:flex><span>        raise ForbiddenError(
+</span></span><span style=display:flex><span>            f&#34;Only members of the Cognito group &#39;{ADMIN_GROUP}&#39; &#34;
+</span></span><span style=display:flex><span>            &#34;may perform an administrator review&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def extract_authorizer_claims(event: dict) -&gt; dict:
+</span></span><span style=display:flex><span>    request_context = event.get(&#34;requestContext&#34;) or {}
+</span></span><span style=display:flex><span>    authorizer = request_context.get(&#34;authorizer&#34;) or {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # HTTP API JWT authorizer.
+</span></span><span style=display:flex><span>    jwt_claims = (
+</span></span><span style=display:flex><span>        authorizer.get(&#34;jwt&#34;, {}).get(&#34;claims&#34;)
+</span></span><span style=display:flex><span>        if isinstance(authorizer.get(&#34;jwt&#34;), dict)
+</span></span><span style=display:flex><span>        else None
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if isinstance(jwt_claims, dict):
+</span></span><span style=display:flex><span>        return jwt_claims
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # REST API Cognito authorizer.
+</span></span><span style=display:flex><span>    claims = authorizer.get(&#34;claims&#34;)
+</span></span><span style=display:flex><span>    if isinstance(claims, dict):
+</span></span><span style=display:flex><span>        return claims
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def parse_cognito_groups(raw_groups: Any) -&gt; set[str]:
+</span></span><span style=display:flex><span>    if isinstance(raw_groups, list):
+</span></span><span style=display:flex><span>        return {
+</span></span><span style=display:flex><span>            str(group).strip()
+</span></span><span style=display:flex><span>            for group in raw_groups
+</span></span><span style=display:flex><span>            if str(group).strip()
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not raw_groups:
+</span></span><span style=display:flex><span>        return set()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    text = str(raw_groups).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if text.startswith(&#34;[&#34;):
+</span></span><span style=display:flex><span>        try:
+</span></span><span style=display:flex><span>            parsed = json.loads(text)
+</span></span><span style=display:flex><span>            if isinstance(parsed, list):
+</span></span><span style=display:flex><span>                return {
+</span></span><span style=display:flex><span>                    str(group).strip()
+</span></span><span style=display:flex><span>                    for group in parsed
+</span></span><span style=display:flex><span>                    if str(group).strip()
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>        except json.JSONDecodeError:
+</span></span><span style=display:flex><span>            pass
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return {
+</span></span><span style=display:flex><span>        group.strip()
+</span></span><span style=display:flex><span>        for group in text.split(&#34;,&#34;)
+</span></span><span style=display:flex><span>        if group.strip()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># DynamoDB
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_document(document_id: str) -&gt; dict | None:
+</span></span><span style=display:flex><span>    response = table.get_item(
+</span></span><span style=display:flex><span>        Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>        ConsistentRead=True,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    return response.get(&#34;Item&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def print_document_context(item: dict) -&gt; None:
+</span></span><span style=display:flex><span>    print(
+</span></span><span style=display:flex><span>        &#34;Document context:&#34;,
+</span></span><span style=display:flex><span>        json.dumps(
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                &#34;documentId&#34;: item.get(&#34;documentId&#34;),
+</span></span><span style=display:flex><span>                &#34;status&#34;: item.get(&#34;status&#34;),
+</span></span><span style=display:flex><span>                &#34;bucket&#34;: item.get(&#34;bucket&#34;),
+</span></span><span style=display:flex><span>                &#34;s3Key&#34;: item.get(&#34;s3Key&#34;),
+</span></span><span style=display:flex><span>                &#34;currentPrefix&#34;: item.get(&#34;currentPrefix&#34;),
+</span></span><span style=display:flex><span>                &#34;malwareStatus&#34;: item.get(&#34;malwareStatus&#34;),
+</span></span><span style=display:flex><span>                &#34;aiStatus&#34;: item.get(&#34;aiStatus&#34;),
+</span></span><span style=display:flex><span>                &#34;aiRecommendedAction&#34;: item.get(
+</span></span><span style=display:flex><span>                    &#34;aiRecommendedAction&#34;
+</span></span><span style=display:flex><span>                ),
+</span></span><span style=display:flex><span>                &#34;systemRecommendedAction&#34;: item.get(
+</span></span><span style=display:flex><span>                    &#34;systemRecommendedAction&#34;
+</span></span><span style=display:flex><span>                ),
+</span></span><span style=display:flex><span>                &#34;finalDecision&#34;: item.get(&#34;finalDecision&#34;),
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            default=str,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># Decision logic
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def resolve_final_action(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>    requested_action: Any,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    Priority order:
+</span></span><span style=display:flex><span>    1. A GuardDuty malware detection always results in REJECT.
+</span></span><span style=display:flex><span>    2. An administrator may only ALLOW or REJECT a document awaiting review.
+</span></span><span style=display:flex><span>    3. The system reads systemRecommendedAction after AI analysis is completed.
+</span></span><span style=display:flex><span>    4. If GuardDuty or AI processing is incomplete, the result is REVIEW.
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    malware_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;malwareStatus&#34;),
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    current_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;status&#34;),
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if malware_status == &#34;THREATS_FOUND&#34;:
+</span></span><span style=display:flex><span>        return &#34;REJECT&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if decision_source == &#34;ADMIN_REVIEW&#34;:
+</span></span><span style=display:flex><span>        return resolve_admin_action(
+</span></span><span style=display:flex><span>            requested_action=requested_action,
+</span></span><span style=display:flex><span>            malware_status=malware_status,
+</span></span><span style=display:flex><span>            current_status=current_status,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return resolve_system_action(
+</span></span><span style=display:flex><span>        item=item,
+</span></span><span style=display:flex><span>        malware_status=malware_status,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def resolve_admin_action(
+</span></span><span style=display:flex><span>    requested_action: Any,
+</span></span><span style=display:flex><span>    malware_status: str,
+</span></span><span style=display:flex><span>    current_status: str,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    action = normalized_upper(requested_action)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if action not in VALID_ADMIN_ACTIONS:
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;Administrator action must be ALLOW or REJECT&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if current_status not in {
+</span></span><span style=display:flex><span>        &#34;MANUAL_REVIEW&#34;,
+</span></span><span style=display:flex><span>        &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>    }:
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;The document is not in the &#34;
+</span></span><span style=display:flex><span>            &#34;MANUAL_REVIEW or DECISION_PENDING state&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if (
+</span></span><span style=display:flex><span>        action == &#34;ALLOW&#34;
+</span></span><span style=display:flex><span>        and malware_status != &#34;NO_THREATS_FOUND&#34;
+</span></span><span style=display:flex><span>    ):
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;A document cannot be approved until &#34;
+</span></span><span style=display:flex><span>            &#34;GuardDuty confirms NO_THREATS_FOUND&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return action
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def resolve_system_action(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    malware_status: str,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    if malware_status != &#34;NO_THREATS_FOUND&#34;:
+</span></span><span style=display:flex><span>        return &#34;REVIEW&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ai_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;aiStatus&#34;),
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if ai_status != &#34;COMPLETED&#34;:
+</span></span><span style=display:flex><span>        return &#34;REVIEW&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    action = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;systemRecommendedAction&#34;),
+</span></span><span style=display:flex><span>        &#34;REVIEW&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if action not in VALID_SYSTEM_ACTIONS:
+</span></span><span style=display:flex><span>        return &#34;REVIEW&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return action
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># ALLOW / REJECT / REVIEW
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def process_allow(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>) -&gt; dict:
+</span></span><span style=display:flex><span>    validate_allow_preconditions(item)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return process_move(
+</span></span><span style=display:flex><span>        item=item,
+</span></span><span style=display:flex><span>        decision_source=decision_source,
+</span></span><span style=display:flex><span>        destination_prefix=CLEAN_PREFIX,
+</span></span><span style=display:flex><span>        moving_status=&#34;MOVING_TO_CLEAN&#34;,
+</span></span><span style=display:flex><span>        final_status=&#34;SAFE&#34;,
+</span></span><span style=display:flex><span>        final_decision=&#34;ALLOW&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def process_reject(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>) -&gt; dict:
+</span></span><span style=display:flex><span>    return process_move(
+</span></span><span style=display:flex><span>        item=item,
+</span></span><span style=display:flex><span>        decision_source=decision_source,
+</span></span><span style=display:flex><span>        destination_prefix=REJECT_PREFIX,
+</span></span><span style=display:flex><span>        moving_status=&#34;MOVING_TO_REJECT&#34;,
+</span></span><span style=display:flex><span>        final_status=&#34;REJECTED&#34;,
+</span></span><span style=display:flex><span>        final_decision=&#34;REJECT&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def process_move(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>    destination_prefix: str,
+</span></span><span style=display:flex><span>    moving_status: str,
+</span></span><span style=display:flex><span>    final_status: str,
+</span></span><span style=display:flex><span>    final_decision: str,
+</span></span><span style=display:flex><span>) -&gt; dict:
+</span></span><span style=display:flex><span>    document_id = item[&#34;documentId&#34;]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if is_already_completed(
+</span></span><span style=display:flex><span>        item=item,
+</span></span><span style=display:flex><span>        status=final_status,
+</span></span><span style=display:flex><span>        prefix=destination_prefix,
+</span></span><span style=display:flex><span>        decision=final_decision,
+</span></span><span style=display:flex><span>    ):
+</span></span><span style=display:flex><span>        cleanup_status = retry_pending_source_cleanup(item)
+</span></span><span style=display:flex><span>        return {
+</span></span><span style=display:flex><span>            &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>            &#34;status&#34;: final_status,
+</span></span><span style=display:flex><span>            &#34;finalDecision&#34;: final_decision,
+</span></span><span style=display:flex><span>            &#34;message&#34;: &#34;The document was processed previously&#34;,
+</span></span><span style=display:flex><span>            &#34;s3Key&#34;: item.get(&#34;s3Key&#34;),
+</span></span><span style=display:flex><span>            &#34;sourceCleanupStatus&#34;: cleanup_status,
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    source_key = get_valid_source_key(item)
+</span></span><span style=display:flex><span>    source_version_id = get_source_version_id(item)
+</span></span><span style=display:flex><span>    destination_key = build_destination_key(
+</span></span><span style=display:flex><span>        source_key=source_key,
+</span></span><span style=display:flex><span>        destination_prefix=destination_prefix,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    previous_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;status&#34;),
+</span></span><span style=display:flex><span>        &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    allowed_statuses = get_allowed_source_statuses(
+</span></span><span style=display:flex><span>        decision_source
+</span></span><span style=display:flex><span>    ) | {moving_status}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    mark_moving(
+</span></span><span style=display:flex><span>        document_id=document_id,
+</span></span><span style=display:flex><span>        target_status=moving_status,
+</span></span><span style=display:flex><span>        expected_statuses=allowed_statuses,
+</span></span><span style=display:flex><span>        source_key=source_key,
+</span></span><span style=display:flex><span>        destination_key=destination_key,
+</span></span><span style=display:flex><span>        source_version_id=source_version_id,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        destination_version_id = copy_object_and_verify(
+</span></span><span style=display:flex><span>            source_key=source_key,
+</span></span><span style=display:flex><span>            destination_key=destination_key,
+</span></span><span style=display:flex><span>            source_version_id=source_version_id,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        finalize_document_move(
+</span></span><span style=display:flex><span>            item=item,
+</span></span><span style=display:flex><span>            source_key=source_key,
+</span></span><span style=display:flex><span>            source_version_id=source_version_id,
+</span></span><span style=display:flex><span>            destination_key=destination_key,
+</span></span><span style=display:flex><span>            destination_version_id=destination_version_id,
+</span></span><span style=display:flex><span>            moving_status=moving_status,
+</span></span><span style=display:flex><span>            final_status=final_status,
+</span></span><span style=display:flex><span>            final_decision=final_decision,
+</span></span><span style=display:flex><span>            final_prefix=destination_prefix,
+</span></span><span style=display:flex><span>            decision_source=decision_source,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    except Exception as error:
+</span></span><span style=display:flex><span>        rollback_move_status(
+</span></span><span style=display:flex><span>            document_id=document_id,
+</span></span><span style=display:flex><span>            moving_status=moving_status,
+</span></span><span style=display:flex><span>            previous_status=previous_status,
+</span></span><span style=display:flex><span>            error_message=str(error),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        raise
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    cleanup_status = cleanup_source_after_move(
+</span></span><span style=display:flex><span>        document_id=document_id,
+</span></span><span style=display:flex><span>        source_key=source_key,
+</span></span><span style=display:flex><span>        source_version_id=source_version_id,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return {
+</span></span><span style=display:flex><span>        &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>        &#34;status&#34;: final_status,
+</span></span><span style=display:flex><span>        &#34;finalDecision&#34;: final_decision,
+</span></span><span style=display:flex><span>        &#34;finalDecisionSource&#34;: decision_source,
+</span></span><span style=display:flex><span>        &#34;currentPrefix&#34;: destination_prefix,
+</span></span><span style=display:flex><span>        &#34;s3Key&#34;: destination_key,
+</span></span><span style=display:flex><span>        &#34;destinationVersionId&#34;: destination_version_id,
+</span></span><span style=display:flex><span>        &#34;sourceCleanupStatus&#34;: cleanup_status,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def validate_allow_preconditions(item: dict) -&gt; None:
+</span></span><span style=display:flex><span>    malware_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;malwareStatus&#34;),
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if malware_status != &#34;NO_THREATS_FOUND&#34;:
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;The document cannot be moved to clean because &#34;
+</span></span><span style=display:flex><span>            &#34;GuardDuty has not confirmed that it is safe&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def process_review(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>) -&gt; dict:
+</span></span><span style=display:flex><span>    document_id = item[&#34;documentId&#34;]
+</span></span><span style=display:flex><span>    source_key = get_valid_source_key(item)
+</span></span><span style=display:flex><span>    now = utc_now()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if (
+</span></span><span style=display:flex><span>        normalized_upper(item.get(&#34;status&#34;)) == &#34;MANUAL_REVIEW&#34;
+</span></span><span style=display:flex><span>        and normalized_upper(item.get(&#34;reviewStatus&#34;)) == &#34;PENDING&#34;
+</span></span><span style=display:flex><span>    ):
+</span></span><span style=display:flex><span>        return {
+</span></span><span style=display:flex><span>            &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>            &#34;status&#34;: &#34;MANUAL_REVIEW&#34;,
+</span></span><span style=display:flex><span>            &#34;reviewStatus&#34;: &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>            &#34;finalDecision&#34;: &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>            &#34;currentPrefix&#34;: QUARANTINE_PREFIX,
+</span></span><span style=display:flex><span>            &#34;s3Key&#34;: source_key,
+</span></span><span style=display:flex><span>            &#34;message&#34;: &#34;The document is already awaiting review&#34;,
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    response = table.update_item(
+</span></span><span style=display:flex><span>        Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>        UpdateExpression=&#34;&#34;&#34;
+</span></span><span style=display:flex><span>            SET #status = :manualReview,
+</span></span><span style=display:flex><span>                reviewStatus = :reviewPending,
+</span></span><span style=display:flex><span>                finalDecision = :finalPending,
+</span></span><span style=display:flex><span>                finalDecisionSource = :source,
+</span></span><span style=display:flex><span>                currentPrefix = :quarantinePrefix,
+</span></span><span style=display:flex><span>                reviewRequestedAt = :reviewRequestedAt,
+</span></span><span style=display:flex><span>                updatedAt = :updatedAt
+</span></span><span style=display:flex><span>        &#34;&#34;&#34;,
+</span></span><span style=display:flex><span>        ConditionExpression=&#34;&#34;&#34;
+</span></span><span style=display:flex><span>            attribute_exists(documentId)
+</span></span><span style=display:flex><span>            AND #status IN (
+</span></span><span style=display:flex><span>                :aiCompleted,
+</span></span><span style=display:flex><span>                :malwareCompleted,
+</span></span><span style=display:flex><span>                :manualReview,
+</span></span><span style=display:flex><span>                :decisionPending,
+</span></span><span style=display:flex><span>                :scanError
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>        &#34;&#34;&#34;,
+</span></span><span style=display:flex><span>        ExpressionAttributeNames={&#34;#status&#34;: &#34;status&#34;},
+</span></span><span style=display:flex><span>        ExpressionAttributeValues={
+</span></span><span style=display:flex><span>            &#34;:manualReview&#34;: &#34;MANUAL_REVIEW&#34;,
+</span></span><span style=display:flex><span>            &#34;:reviewPending&#34;: &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>            &#34;:finalPending&#34;: &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>            &#34;:source&#34;: decision_source,
+</span></span><span style=display:flex><span>            &#34;:quarantinePrefix&#34;: QUARANTINE_PREFIX,
+</span></span><span style=display:flex><span>            &#34;:reviewRequestedAt&#34;: now,
+</span></span><span style=display:flex><span>            &#34;:updatedAt&#34;: now,
+</span></span><span style=display:flex><span>            &#34;:aiCompleted&#34;: &#34;AI_ANALYSIS_COMPLETED&#34;,
+</span></span><span style=display:flex><span>            &#34;:malwareCompleted&#34;: &#34;MALWARE_SCAN_COMPLETED&#34;,
+</span></span><span style=display:flex><span>            &#34;:decisionPending&#34;: &#34;DECISION_PENDING&#34;,
+</span></span><span style=display:flex><span>            &#34;:scanError&#34;: &#34;SCAN_ERROR&#34;,
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        ReturnValues=&#34;ALL_NEW&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    attributes = response.get(&#34;Attributes&#34;, {})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return {
+</span></span><span style=display:flex><span>        &#34;documentId&#34;: document_id,
+</span></span><span style=display:flex><span>        &#34;status&#34;: attributes.get(&#34;status&#34;, &#34;MANUAL_REVIEW&#34;),
+</span></span><span style=display:flex><span>        &#34;reviewStatus&#34;: attributes.get(
+</span></span><span style=display:flex><span>            &#34;reviewStatus&#34;,
+</span></span><span style=display:flex><span>            &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>        &#34;finalDecision&#34;: attributes.get(
+</span></span><span style=display:flex><span>            &#34;finalDecision&#34;,
+</span></span><span style=display:flex><span>            &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>        &#34;currentPrefix&#34;: attributes.get(
+</span></span><span style=display:flex><span>            &#34;currentPrefix&#34;,
+</span></span><span style=display:flex><span>            QUARANTINE_PREFIX,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>        &#34;s3Key&#34;: source_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># S3 move helpers
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_valid_source_key(item: dict) -&gt; str:
+</span></span><span style=display:flex><span>    source_key = str(item.get(&#34;s3Key&#34;) or &#34;&#34;).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not source_key:
+</span></span><span style=display:flex><span>        raise ValueError(&#34;Document does not have an s3Key&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    decoded_key = urllib.parse.unquote_plus(source_key)
+</span></span><span style=display:flex><span>    expected_prefix = f&#34;{QUARANTINE_PREFIX}/&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not decoded_key.startswith(expected_prefix):
+</span></span><span style=display:flex><span>        raise ValueError(
+</span></span><span style=display:flex><span>            &#34;The source object is not under &#34;
+</span></span><span style=display:flex><span>            f&#34;{expected_prefix}: {decoded_key}&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return decoded_key
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def build_destination_key(
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    destination_prefix: str,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    parts = source_key.split(&#34;/&#34;, 1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if len(parts) != 2 or not parts[1]:
+</span></span><span style=display:flex><span>        raise ValueError(f&#34;Invalid S3 key: {source_key}&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return f&#34;{destination_prefix}/{parts[1]}&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_source_version_id(item: dict) -&gt; str | None:
+</span></span><span style=display:flex><span>    version_id = (
+</span></span><span style=display:flex><span>        item.get(&#34;malwareObjectVersionId&#34;)
+</span></span><span style=display:flex><span>        or item.get(&#34;objectVersionId&#34;)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if version_id is None:
+</span></span><span style=display:flex><span>        return None
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    normalized = str(version_id).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if normalized.upper() in {
+</span></span><span style=display:flex><span>        &#34;&#34;,
+</span></span><span style=display:flex><span>        &#34;NONE&#34;,
+</span></span><span style=display:flex><span>        &#34;NULL&#34;,
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    }:
+</span></span><span style=display:flex><span>        return None
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return normalized
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def copy_object_and_verify(
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    destination_key: str,
+</span></span><span style=display:flex><span>    source_version_id: str | None,
+</span></span><span style=display:flex><span>) -&gt; str | None:
+</span></span><span style=display:flex><span>    copy_source: dict[str, str] = {
+</span></span><span style=display:flex><span>        &#34;Bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        &#34;Key&#34;: source_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    source_head_parameters: dict[str, str] = {
+</span></span><span style=display:flex><span>        &#34;Bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        &#34;Key&#34;: source_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if source_version_id:
+</span></span><span style=display:flex><span>        copy_source[&#34;VersionId&#34;] = source_version_id
+</span></span><span style=display:flex><span>        source_head_parameters[&#34;VersionId&#34;] = source_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    source_head = s3_client.head_object(
+</span></span><span style=display:flex><span>        **source_head_parameters
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    source_size = source_head.get(&#34;ContentLength&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(
+</span></span><span style=display:flex><span>        &#34;Copying object:&#34;,
+</span></span><span style=display:flex><span>        json.dumps(
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                &#34;bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>                &#34;sourceKey&#34;: source_key,
+</span></span><span style=display:flex><span>                &#34;sourceVersionId&#34;: source_version_id,
+</span></span><span style=display:flex><span>                &#34;destinationKey&#34;: destination_key,
+</span></span><span style=display:flex><span>                &#34;sourceSize&#34;: source_size,
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            default=str,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    response = s3_client.copy_object(
+</span></span><span style=display:flex><span>        Bucket=DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        Key=destination_key,
+</span></span><span style=display:flex><span>        CopySource=copy_source,
+</span></span><span style=display:flex><span>        MetadataDirective=&#34;COPY&#34;,
+</span></span><span style=display:flex><span>        TaggingDirective=&#34;COPY&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(
+</span></span><span style=display:flex><span>        &#34;Copy response:&#34;,
+</span></span><span style=display:flex><span>        json.dumps(response, default=str, indent=2),
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    copy_result = response.get(&#34;CopyObjectResult&#34;, {})
+</span></span><span style=display:flex><span>    destination_etag = copy_result.get(&#34;ETag&#34;)
+</span></span><span style=display:flex><span>    destination_version_id = response.get(&#34;VersionId&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not destination_etag:
+</span></span><span style=display:flex><span>        raise RuntimeError(&#34;S3 CopyObject did not return an ETag&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    verify_parameters: dict[str, str] = {
+</span></span><span style=display:flex><span>        &#34;Bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        &#34;Key&#34;: destination_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if destination_version_id:
+</span></span><span style=display:flex><span>        verify_parameters[&#34;VersionId&#34;] = destination_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    verify_response = s3_client.head_object(
+</span></span><span style=display:flex><span>        **verify_parameters
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    verified_etag = verify_response.get(&#34;ETag&#34;)
+</span></span><span style=display:flex><span>    verified_size = verify_response.get(&#34;ContentLength&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not verified_etag:
+</span></span><span style=display:flex><span>        raise RuntimeError(&#34;Unable to verify the destination object&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if destination_etag != verified_etag:
+</span></span><span style=display:flex><span>        raise RuntimeError(
+</span></span><span style=display:flex><span>            &#34;The destination object ETag does not match the CopyObject result&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if (
+</span></span><span style=display:flex><span>        source_size is not None
+</span></span><span style=display:flex><span>        and verified_size != source_size
+</span></span><span style=display:flex><span>    ):
+</span></span><span style=display:flex><span>        raise RuntimeError(
+</span></span><span style=display:flex><span>            &#34;The destination object size does not match the source object&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(
+</span></span><span style=display:flex><span>        &#34;Destination verified:&#34;,
+</span></span><span style=display:flex><span>        json.dumps(
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                &#34;destinationKey&#34;: destination_key,
+</span></span><span style=display:flex><span>                &#34;eTag&#34;: verified_etag,
+</span></span><span style=display:flex><span>                &#34;size&#34;: verified_size,
+</span></span><span style=display:flex><span>                &#34;versionId&#34;: destination_version_id,
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            default=str,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return destination_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def delete_source_object(
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    source_version_id: str | None,
+</span></span><span style=display:flex><span>) -&gt; None:
+</span></span><span style=display:flex><span>    parameters: dict[str, str] = {
+</span></span><span style=display:flex><span>        &#34;Bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        &#34;Key&#34;: source_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if source_version_id:
+</span></span><span style=display:flex><span>        parameters[&#34;VersionId&#34;] = source_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(
+</span></span><span style=display:flex><span>        &#34;Deleting source object:&#34;,
+</span></span><span style=display:flex><span>        json.dumps(
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                &#34;bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>                &#34;sourceKey&#34;: source_key,
+</span></span><span style=display:flex><span>                &#34;versionId&#34;: source_version_id,
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            default=str,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    s3_client.delete_object(**parameters)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># Move state and DynamoDB finalization
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def mark_moving(
+</span></span><span style=display:flex><span>    document_id: str,
+</span></span><span style=display:flex><span>    target_status: str,
+</span></span><span style=display:flex><span>    expected_statuses: set[str],
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    destination_key: str,
+</span></span><span style=display:flex><span>    source_version_id: str | None,
+</span></span><span style=display:flex><span>) -&gt; None:
+</span></span><span style=display:flex><span>    now = utc_now()
+</span></span><span style=display:flex><span>    expression_values: dict[str, Any] = {
+</span></span><span style=display:flex><span>        &#34;:targetStatus&#34;: target_status,
+</span></span><span style=display:flex><span>        &#34;:moveStartedAt&#34;: now,
+</span></span><span style=display:flex><span>        &#34;:updatedAt&#34;: now,
+</span></span><span style=display:flex><span>        &#34;:sourceKey&#34;: source_key,
+</span></span><span style=display:flex><span>        &#34;:destinationKey&#34;: destination_key,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    status_placeholders = []
+</span></span><span style=display:flex><span>    for index, status in enumerate(sorted(expected_statuses)):
+</span></span><span style=display:flex><span>        placeholder = f&#34;:expectedStatus{index}&#34;
+</span></span><span style=display:flex><span>        expression_values[placeholder] = status
+</span></span><span style=display:flex><span>        status_placeholders.append(placeholder)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    update_expression = &#34;&#34;&#34;
+</span></span><span style=display:flex><span>        SET #status = :targetStatus,
+</span></span><span style=display:flex><span>            moveStartedAt = :moveStartedAt,
+</span></span><span style=display:flex><span>            updatedAt = :updatedAt,
+</span></span><span style=display:flex><span>            moveSourceKey = :sourceKey,
+</span></span><span style=display:flex><span>            moveDestinationKey = :destinationKey
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if source_version_id:
+</span></span><span style=display:flex><span>        update_expression += (
+</span></span><span style=display:flex><span>            &#34;, moveSourceVersionId = :sourceVersionId&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        expression_values[
+</span></span><span style=display:flex><span>            &#34;:sourceVersionId&#34;
+</span></span><span style=display:flex><span>        ] = source_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    condition_expression = (
+</span></span><span style=display:flex><span>        &#34;attribute_exists(documentId) &#34;
+</span></span><span style=display:flex><span>        &#34;AND #status IN (&#34;
+</span></span><span style=display:flex><span>        + &#34;, &#34;.join(status_placeholders)
+</span></span><span style=display:flex><span>        + &#34;)&#34;
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    table.update_item(
+</span></span><span style=display:flex><span>        Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>        UpdateExpression=update_expression,
+</span></span><span style=display:flex><span>        ConditionExpression=condition_expression,
+</span></span><span style=display:flex><span>        ExpressionAttributeNames={&#34;#status&#34;: &#34;status&#34;},
+</span></span><span style=display:flex><span>        ExpressionAttributeValues=expression_values,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def rollback_move_status(
+</span></span><span style=display:flex><span>    document_id: str,
+</span></span><span style=display:flex><span>    moving_status: str,
+</span></span><span style=display:flex><span>    previous_status: str,
+</span></span><span style=display:flex><span>    error_message: str,
+</span></span><span style=display:flex><span>) -&gt; None:
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        now = utc_now()
+</span></span><span style=display:flex><span>        table.update_item(
+</span></span><span style=display:flex><span>            Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>            UpdateExpression=&#34;&#34;&#34;
+</span></span><span style=display:flex><span>                SET #status = :previousStatus,
+</span></span><span style=display:flex><span>                    moveFailureReason = :failureReason,
+</span></span><span style=display:flex><span>                    moveFailedAt = :failedAt,
+</span></span><span style=display:flex><span>                    updatedAt = :updatedAt
+</span></span><span style=display:flex><span>            &#34;&#34;&#34;,
+</span></span><span style=display:flex><span>            ConditionExpression=&#34;#status = :movingStatus&#34;,
+</span></span><span style=display:flex><span>            ExpressionAttributeNames={&#34;#status&#34;: &#34;status&#34;},
+</span></span><span style=display:flex><span>            ExpressionAttributeValues={
+</span></span><span style=display:flex><span>                &#34;:previousStatus&#34;: previous_status,
+</span></span><span style=display:flex><span>                &#34;:failureReason&#34;: error_message[:1000],
+</span></span><span style=display:flex><span>                &#34;:failedAt&#34;: now,
+</span></span><span style=display:flex><span>                &#34;:updatedAt&#34;: now,
+</span></span><span style=display:flex><span>                &#34;:movingStatus&#34;: moving_status,
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        print(
+</span></span><span style=display:flex><span>            f&#34;Rolled back {document_id} to {previous_status}&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    except ClientError as rollback_error:
+</span></span><span style=display:flex><span>        print(&#34;Could not roll back moving status:&#34;)
+</span></span><span style=display:flex><span>        print(json.dumps(
+</span></span><span style=display:flex><span>            rollback_error.response,
+</span></span><span style=display:flex><span>            default=str,
+</span></span><span style=display:flex><span>            indent=2,
+</span></span><span style=display:flex><span>        ))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def finalize_document_move(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    source_version_id: str | None,
+</span></span><span style=display:flex><span>    destination_key: str,
+</span></span><span style=display:flex><span>    destination_version_id: str | None,
+</span></span><span style=display:flex><span>    moving_status: str,
+</span></span><span style=display:flex><span>    final_status: str,
+</span></span><span style=display:flex><span>    final_decision: str,
+</span></span><span style=display:flex><span>    final_prefix: str,
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>) -&gt; None:
+</span></span><span style=display:flex><span>    document_id = item[&#34;documentId&#34;]
+</span></span><span style=display:flex><span>    now = utc_now()
+</span></span><span style=display:flex><span>    risk_score = decimal_value(
+</span></span><span style=display:flex><span>        item.get(
+</span></span><span style=display:flex><span>            &#34;systemRiskScore&#34;,
+</span></span><span style=display:flex><span>            item.get(&#34;riskScore&#34;, 0),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    risk_level = str(
+</span></span><span style=display:flex><span>        item.get(
+</span></span><span style=display:flex><span>            &#34;systemRiskLevel&#34;,
+</span></span><span style=display:flex><span>            item.get(&#34;riskLevel&#34;, &#34;UNKNOWN&#34;),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    ).strip().upper()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    expression_values: dict[str, Any] = {
+</span></span><span style=display:flex><span>        &#34;:finalStatus&#34;: final_status,
+</span></span><span style=display:flex><span>        &#34;:finalDecision&#34;: final_decision,
+</span></span><span style=display:flex><span>        &#34;:decisionSource&#34;: decision_source,
+</span></span><span style=display:flex><span>        &#34;:riskScore&#34;: risk_score,
+</span></span><span style=display:flex><span>        &#34;:riskLevel&#34;: risk_level,
+</span></span><span style=display:flex><span>        &#34;:prefix&#34;: final_prefix,
+</span></span><span style=display:flex><span>        &#34;:destinationKey&#34;: destination_key,
+</span></span><span style=display:flex><span>        &#34;:sourceKey&#34;: source_key,
+</span></span><span style=display:flex><span>        &#34;:bucket&#34;: DOCUMENT_BUCKET,
+</span></span><span style=display:flex><span>        &#34;:completedAt&#34;: now,
+</span></span><span style=display:flex><span>        &#34;:updatedAt&#34;: now,
+</span></span><span style=display:flex><span>        &#34;:movingStatus&#34;: moving_status,
+</span></span><span style=display:flex><span>        &#34;:cleanupPending&#34;: &#34;PENDING&#34;,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    update_expression = &#34;&#34;&#34;
+</span></span><span style=display:flex><span>        SET #status = :finalStatus,
+</span></span><span style=display:flex><span>            finalDecision = :finalDecision,
+</span></span><span style=display:flex><span>            finalDecisionSource = :decisionSource,
+</span></span><span style=display:flex><span>            finalRiskScore = :riskScore,
+</span></span><span style=display:flex><span>            finalRiskLevel = :riskLevel,
+</span></span><span style=display:flex><span>            currentPrefix = :prefix,
+</span></span><span style=display:flex><span>            s3Key = :destinationKey,
+</span></span><span style=display:flex><span>            originalSourceKey = :sourceKey,
+</span></span><span style=display:flex><span>            #bucket = :bucket,
+</span></span><span style=display:flex><span>            finalBucket = :bucket,
+</span></span><span style=display:flex><span>            completedAt = :completedAt,
+</span></span><span style=display:flex><span>            updatedAt = :updatedAt,
+</span></span><span style=display:flex><span>            sourceCleanupStatus = :cleanupPending
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if source_version_id:
+</span></span><span style=display:flex><span>        update_expression += (
+</span></span><span style=display:flex><span>            &#34;, originalSourceVersionId = :sourceVersionId&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        expression_values[
+</span></span><span style=display:flex><span>            &#34;:sourceVersionId&#34;
+</span></span><span style=display:flex><span>        ] = source_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if destination_version_id:
+</span></span><span style=display:flex><span>        update_expression += (
+</span></span><span style=display:flex><span>            &#34;, destinationVersionId = :destinationVersionId&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        expression_values[
+</span></span><span style=display:flex><span>            &#34;:destinationVersionId&#34;
+</span></span><span style=display:flex><span>        ] = destination_version_id
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    table.update_item(
+</span></span><span style=display:flex><span>        Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>        UpdateExpression=update_expression,
+</span></span><span style=display:flex><span>        ConditionExpression=&#34;&#34;&#34;
+</span></span><span style=display:flex><span>            attribute_exists(documentId)
+</span></span><span style=display:flex><span>            AND #status = :movingStatus
+</span></span><span style=display:flex><span>        &#34;&#34;&#34;,
+</span></span><span style=display:flex><span>        ExpressionAttributeNames={
+</span></span><span style=display:flex><span>            &#34;#status&#34;: &#34;status&#34;,
+</span></span><span style=display:flex><span>            &#34;#bucket&#34;: &#34;bucket&#34;,
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        ExpressionAttributeValues=expression_values,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def cleanup_source_after_move(
+</span></span><span style=display:flex><span>    document_id: str,
+</span></span><span style=display:flex><span>    source_key: str,
+</span></span><span style=display:flex><span>    source_version_id: str | None,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        delete_source_object(
+</span></span><span style=display:flex><span>            source_key=source_key,
+</span></span><span style=display:flex><span>            source_version_id=source_version_id,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        update_cleanup_status(
+</span></span><span style=display:flex><span>            document_id=document_id,
+</span></span><span style=display:flex><span>            status=&#34;COMPLETED&#34;,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        return &#34;COMPLETED&#34;
+</span></span><span style=display:flex><span>    except ClientError as error:
+</span></span><span style=display:flex><span>        print(&#34;Source cleanup failed:&#34;)
+</span></span><span style=display:flex><span>        print(json.dumps(error.response, default=str, indent=2))
+</span></span><span style=display:flex><span>        update_cleanup_status(
+</span></span><span style=display:flex><span>            document_id=document_id,
+</span></span><span style=display:flex><span>            status=&#34;FAILED&#34;,
+</span></span><span style=display:flex><span>            error_message=str(error),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        return &#34;FAILED&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def retry_pending_source_cleanup(item: dict) -&gt; str:
+</span></span><span style=display:flex><span>    cleanup_status = normalized_upper(
+</span></span><span style=display:flex><span>        item.get(&#34;sourceCleanupStatus&#34;),
+</span></span><span style=display:flex><span>        &#34;COMPLETED&#34;,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if cleanup_status == &#34;COMPLETED&#34;:
+</span></span><span style=display:flex><span>        return &#34;COMPLETED&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    source_key = str(
+</span></span><span style=display:flex><span>        item.get(&#34;originalSourceKey&#34;) or &#34;&#34;
+</span></span><span style=display:flex><span>    ).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not source_key:
+</span></span><span style=display:flex><span>        return cleanup_status
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    source_version_id = normalize_optional_version_id(
+</span></span><span style=display:flex><span>        item.get(&#34;originalSourceVersionId&#34;)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return cleanup_source_after_move(
+</span></span><span style=display:flex><span>        document_id=item[&#34;documentId&#34;],
+</span></span><span style=display:flex><span>        source_key=source_key,
+</span></span><span style=display:flex><span>        source_version_id=source_version_id,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def update_cleanup_status(
+</span></span><span style=display:flex><span>    document_id: str,
+</span></span><span style=display:flex><span>    status: str,
+</span></span><span style=display:flex><span>    error_message: str | None = None,
+</span></span><span style=display:flex><span>) -&gt; None:
+</span></span><span style=display:flex><span>    now = utc_now()
+</span></span><span style=display:flex><span>    expression_values: dict[str, Any] = {
+</span></span><span style=display:flex><span>        &#34;:cleanupStatus&#34;: status,
+</span></span><span style=display:flex><span>        &#34;:cleanupAt&#34;: now,
+</span></span><span style=display:flex><span>        &#34;:updatedAt&#34;: now,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    update_expression = &#34;&#34;&#34;
+</span></span><span style=display:flex><span>        SET sourceCleanupStatus = :cleanupStatus,
+</span></span><span style=display:flex><span>            sourceCleanupAt = :cleanupAt,
+</span></span><span style=display:flex><span>            updatedAt = :updatedAt
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if error_message:
+</span></span><span style=display:flex><span>        update_expression += (
+</span></span><span style=display:flex><span>            &#34;, sourceCleanupError = :cleanupError&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        expression_values[
+</span></span><span style=display:flex><span>            &#34;:cleanupError&#34;
+</span></span><span style=display:flex><span>        ] = error_message[:1000]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    table.update_item(
+</span></span><span style=display:flex><span>        Key={&#34;documentId&#34;: document_id},
+</span></span><span style=display:flex><span>        UpdateExpression=update_expression,
+</span></span><span style=display:flex><span>        ExpressionAttributeValues=expression_values,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_allowed_source_statuses(
+</span></span><span style=display:flex><span>    decision_source: str,
+</span></span><span style=display:flex><span>) -&gt; set[str]:
+</span></span><span style=display:flex><span>    if decision_source == &#34;ADMIN_REVIEW&#34;:
+</span></span><span style=display:flex><span>        return set(ADMIN_REVIEW_STATUSES)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return set(SYSTEM_SOURCE_STATUSES)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def is_already_completed(
+</span></span><span style=display:flex><span>    item: dict,
+</span></span><span style=display:flex><span>    status: str,
+</span></span><span style=display:flex><span>    prefix: str,
+</span></span><span style=display:flex><span>    decision: str,
+</span></span><span style=display:flex><span>) -&gt; bool:
+</span></span><span style=display:flex><span>    return (
+</span></span><span style=display:flex><span>        normalized_upper(item.get(&#34;status&#34;)) == status
+</span></span><span style=display:flex><span>        and str(item.get(&#34;currentPrefix&#34;) or &#34;&#34;).strip() == prefix
+</span></span><span style=display:flex><span>        and normalized_upper(item.get(&#34;finalDecision&#34;)) == decision
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span># Utilities
+</span></span><span style=display:flex><span># =========================================================
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def normalized_upper(
+</span></span><span style=display:flex><span>    value: Any,
+</span></span><span style=display:flex><span>    default: str = &#34;&#34;,
+</span></span><span style=display:flex><span>) -&gt; str:
+</span></span><span style=display:flex><span>    return str(value if value is not None else default).strip().upper()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def normalize_optional_version_id(value: Any) -&gt; str | None:
+</span></span><span style=display:flex><span>    if value is None:
+</span></span><span style=display:flex><span>        return None
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    normalized = str(value).strip()
+</span></span><span style=display:flex><span>    if normalized.upper() in {
+</span></span><span style=display:flex><span>        &#34;&#34;,
+</span></span><span style=display:flex><span>        &#34;NONE&#34;,
+</span></span><span style=display:flex><span>        &#34;NULL&#34;,
+</span></span><span style=display:flex><span>        &#34;UNKNOWN&#34;,
+</span></span><span style=display:flex><span>    }:
+</span></span><span style=display:flex><span>        return None
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    return normalized
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def decimal_value(value: Any) -&gt; Decimal:
+</span></span><span style=display:flex><span>    if isinstance(value, Decimal):
+</span></span><span style=display:flex><span>        return value
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        return Decimal(str(value if value is not None else 0))
+</span></span><span style=display:flex><span>    except (InvalidOperation, ValueError, TypeError):
+</span></span><span style=display:flex><span>        return Decimal(&#34;0&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def utc_now() -&gt; str:
+</span></span><span style=display:flex><span>    return datetime.now(timezone.utc).isoformat()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def api_response(
+</span></span><span style=display:flex><span>    status_code: int,
+</span></span><span style=display:flex><span>    body: dict,
+</span></span><span style=display:flex><span>) -&gt; dict:
+</span></span><span style=display:flex><span>    return {
+</span></span><span style=display:flex><span>        &#34;statusCode&#34;: status_code,
+</span></span><span style=display:flex><span>        &#34;headers&#34;: {
+</span></span><span style=display:flex><span>            &#34;Content-Type&#34;: &#34;application/json&#34;,
+</span></span><span style=display:flex><span>            &#34;Access-Control-Allow-Origin&#34;: CORS_ORIGIN,
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        &#34;body&#34;: json.dumps(body, default=str),
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def validate_internal_admin_review(event):
+</span></span><span style=display:flex><span>    internal_invocation = event.get(
+</span></span><span style=display:flex><span>        &#34;internalInvocation&#34;
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    reviewed_by = str(
+</span></span><span style=display:flex><span>        event.get(&#34;reviewedBy&#34;, &#34;&#34;)
+</span></span><span style=display:flex><span>    ).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    review_id = str(
+</span></span><span style=display:flex><span>        event.get(&#34;reviewId&#34;, &#34;&#34;)
+</span></span><span style=display:flex><span>    ).strip()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if internal_invocation is not True:
+</span></span><span style=display:flex><span>        raise PermissionError(
+</span></span><span style=display:flex><span>            &#34;ADMIN_REVIEW may only be invoked internally&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not reviewed_by:
+</span></span><span style=display:flex><span>        raise PermissionError(
+</span></span><span style=display:flex><span>            &#34;reviewedBy is required&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    if not review_id:
+</span></span><span style=display:flex><span>        raise PermissionError(
+</span></span><span style=display:flex><span>            &#34;reviewId is required&#34;
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(json.dumps({
+</span></span><span style=display:flex><span>        &#34;event&#34;: &#34;INTERNAL_ADMIN_REVIEW_AUTHORIZED&#34;,
+</span></span><span style=display:flex><span>        &#34;reviewedBy&#34;: reviewed_by,
+</span></span><span style=display:flex><span>        &#34;reviewId&#34;: review_id
+</span></span><span style=display:flex><span>    }))
+</span></span></code></pre></div><p>In the <strong>Configuration</strong> tab, choose <strong>Environment variables</strong> and add:</p><table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td><code>CLEAN_PREFIX</code></td><td><code>clean</code></td></tr><tr><td><code>DOCUMENTS_TABLE</code></td><td><code>SecureDocuments</code></td></tr><tr><td><code>DOCUMENT_BUCKET</code></td><td><code>secure-ai-document-storage</code></td></tr><tr><td><code>QUARANTINE_PREFIX</code></td><td><code>quarantine</code></td></tr><tr><td><code>REJECT_PREFIX</code></td><td><code>reject</code></td></tr></tbody></table><p><img src=/images/5-Workshop/5.7/5.7.1/5.7.1.2.png alt="Environment variables"></p><p>In the <strong>General configuration</strong> section, configure:</p><ul><li><strong>Memory</strong>: <code>512 MB</code></li><li><strong>Timeout</strong>: <code>1 minute</code></li></ul><p><img src=/images/5-Workshop/5.8-Decision/5.8.1-create-decision-lambda/general-configuration.png alt="General configuration"></p><p>The Lambda execution role requires the following primary permissions:</p><ul><li><code>s3:GetObject</code></li><li><code>s3:HeadObject</code></li><li><code>s3:PutObject</code></li><li><code>s3:DeleteObject</code></li><li><code>dynamodb:GetItem</code></li><li><code>dynamodb:UpdateItem</code></li><li>Permissions to write logs to Amazon CloudWatch Logs.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	&#34;Version&#34;: &#34;2012-10-17&#34;,
+</span></span><span style=display:flex><span>	&#34;Statement&#34;: [
+</span></span><span style=display:flex><span>		{
+</span></span><span style=display:flex><span>			&#34;Sid&#34;: &#34;ReadAndUpdateSecureDocuments&#34;,
+</span></span><span style=display:flex><span>			&#34;Effect&#34;: &#34;Allow&#34;,
+</span></span><span style=display:flex><span>			&#34;Action&#34;: [
+</span></span><span style=display:flex><span>				&#34;dynamodb:GetItem&#34;,
+</span></span><span style=display:flex><span>				&#34;dynamodb:UpdateItem&#34;
+</span></span><span style=display:flex><span>			],
+</span></span><span style=display:flex><span>			&#34;Resource&#34;: &#34;arn:aws:dynamodb:ap-southeast-1:accout_id:table/SecureDocuments&#34;
+</span></span><span style=display:flex><span>		},
+</span></span><span style=display:flex><span>		{
+</span></span><span style=display:flex><span>			&#34;Sid&#34;: &#34;ReadCleanScannedQuarantineObjects&#34;,
+</span></span><span style=display:flex><span>			&#34;Effect&#34;: &#34;Allow&#34;,
+</span></span><span style=display:flex><span>			&#34;Action&#34;: [
+</span></span><span style=display:flex><span>				&#34;s3:*&#34;
+</span></span><span style=display:flex><span>			],
+</span></span><span style=display:flex><span>			&#34;Resource&#34;: &#34;arn:aws:s3:::secure-ai-document-storage/quarantine/*&#34;
+</span></span><span style=display:flex><span>		},
+</span></span><span style=display:flex><span>		{
+</span></span><span style=display:flex><span>			&#34;Sid&#34;: &#34;WriteCleanAndRejectObjects&#34;,
+</span></span><span style=display:flex><span>			&#34;Effect&#34;: &#34;Allow&#34;,
+</span></span><span style=display:flex><span>			&#34;Action&#34;: [
+</span></span><span style=display:flex><span>				&#34;s3:*&#34;
+</span></span><span style=display:flex><span>			],
+</span></span><span style=display:flex><span>			&#34;Resource&#34;: [
+</span></span><span style=display:flex><span>				&#34;arn:aws:s3:::secure-ai-document-storage/clean/*&#34;,
+</span></span><span style=display:flex><span>				&#34;arn:aws:s3:::secure-ai-document-storage/reject/*&#34;
+</span></span><span style=display:flex><span>			]
+</span></span><span style=display:flex><span>		},
+</span></span><span style=display:flex><span>		{
+</span></span><span style=display:flex><span>			&#34;Sid&#34;: &#34;DeleteQuarantineObjects&#34;,
+</span></span><span style=display:flex><span>			&#34;Effect&#34;: &#34;Allow&#34;,
+</span></span><span style=display:flex><span>			&#34;Action&#34;: [
+</span></span><span style=display:flex><span>				&#34;s3:*&#34;
+</span></span><span style=display:flex><span>			],
+</span></span><span style=display:flex><span>			&#34;Resource&#34;: &#34;arn:aws:s3:::secure-ai-document-storage/quarantine/*&#34;
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>During troubleshooting, broad permissions were temporarily granted to the quarantine prefix. For the final configuration, apply least-privilege permissions.</strong>
+The S3 permission scope should be limited to the following bucket:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>secure-ai-document-storage
+</span></span></code></pre></div><p>and the following prefixes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>quarantine/*
+</span></span><span style=display:flex><span>clean/*
+</span></span><span style=display:flex><span>reject/*
+</span></span></code></pre></div><p><img src=/images/5-Workshop/5.7/5.7.1/5.7.1.4.png alt="Lambda permissions"></p><p>The Lambda function supports two decision sources:</p><ul><li><code>SYSTEM_RULES</code>: An automatic decision based on GuardDuty and AI results.</li><li><code>ADMIN_REVIEW</code>: A manual decision submitted by an administrator through the document review API.</li></ul><div class="notices warning"><p>The <code>ADMIN_GROUP</code> value must exactly match the group name in Amazon Cognito. If the group is named <code>Admins</code>, do not configure the value as <code>admin</code>.</p></div><div class="notices note"><p>The Decision Engine allows a document to be moved to <code>clean/</code> only after GuardDuty returns <code>NO_THREATS_FOUND</code>.</p></div><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/5-workshop/5.7-decision/ title=Decision><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/5-workshop/5.7-decision/5.7.2-move-safe-file/ title="Move Safe Documents" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1785052465></script><script src=/js/perfect-scrollbar.min.js?1785052465></script><script src=/js/perfect-scrollbar.jquery.min.js?1785052465></script><script src=/js/jquery.sticky.js?1785052465></script><script src=/js/featherlight.min.js?1785052465></script><script src=/js/highlight.pack.js?1785052465></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1785052465></script><script src=/js/learn.js?1785052465></script><script src=/js/hugo-learn.js?1785052465></script><link href=/mermaid/mermaid.css?1785052465 rel=stylesheet><script src=/mermaid/mermaid.js?1785052465></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
